@@ -1,0 +1,8 @@
+# Dont leak the secrets!
+.env
+
+# More env files
+.vscode
+lib/__pycache__
+venv
+context
