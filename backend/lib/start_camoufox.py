@@ -1,11 +1,16 @@
-from camoufox.async_api import AsyncCamoufox
-import asyncio
-import json
-import os
-import dotenv
+import os, sys, asyncio, dotenv
 
 dotenv.load_dotenv()
+
+# Set before anything Camoufox-related
 os.environ["CAMOUFOX_PATH"] = "/mnt/data/camoufox"
+os.environ["GITHUB_TOKEN"] = os.getenv("GITHUB_TOKEN", "")
+
+# Windows compatibility (optional)
+if sys.platform.startswith("win"):
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+
+from camoufox import AsyncCamoufox
 
 def startCamoufox():
     return AsyncCamoufox(
