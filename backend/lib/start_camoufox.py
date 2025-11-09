@@ -13,7 +13,17 @@ if sys.platform.startswith("win"):
 from camoufox import AsyncCamoufox
 
 def startCamoufox():
-
+    launch_args = {}
+    
+    # Render (Linux) Configuration
+    if not sys.platform.startswith("win"):
+        # This Linux path is where the browser is INSTALLED on the Render disk.
+        CAMOUFOX_EXECUTABLE_PATH = (
+            os.environ["CAMOUFOX_PATH"] + 
+            "/camoufox-142.0.1-fork.26-lin.x86_64/firefox"
+        )
+        # Add the explicit path only for Linux/Render deployment
+        launch_args["executable_path"] = CAMOUFOX_EXECUTABLE_PATH
     user_data_rel_path = 'context'
 
     if os.path.exists(user_data_rel_path):
@@ -28,6 +38,7 @@ def startCamoufox():
         persistent_context=True,
         # Stores user data in local folder
         user_data_dir='context',
+        **launch_args,
         # Randomizes mouse cursor movements
         humanize=True,
         # Opens window for control
@@ -40,6 +51,7 @@ def startCamoufox():
         # Keep device and user agent settings the same so linkedin doesnt log me out
         os="windows",
         user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0",
+
     )
 
         
