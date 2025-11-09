@@ -18,6 +18,9 @@ from backend.lib.start_camoufox import startCamoufox
 
 db = JobDatabase()
 print("Loop policy:", type(asyncio.get_event_loop_policy()).__name__)
+
+os.environ["CAMOUFOX_PATH"] = "/mnt/data/camoufox"
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup
