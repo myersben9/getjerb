@@ -1,7 +1,11 @@
 from camoufox.async_api import AsyncCamoufox
 import asyncio
 import json
+import os
+import dotenv
 
+dotenv.load_dotenv()
+os.environ["CAMOUFOX_PATH"] = "/mnt/data/camoufox"
 
 def startCamoufox():
     return AsyncCamoufox(
