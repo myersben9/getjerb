@@ -2,7 +2,10 @@
 import asyncio, sys
 if sys.platform.startswith("win"):
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-
+import os
+import dotenv
+dotenv.load_dotenv()
+os.environ["GITHUB_TOKEN"] = os.getenv("GITHUB_TOKEN", "")
 
 from fastapi import FastAPI, BackgroundTasks, Request
 from fastapi.responses import JSONResponse
