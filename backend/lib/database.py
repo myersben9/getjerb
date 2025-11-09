@@ -19,6 +19,7 @@ from .logger import logger
 
 dotenv.load_dotenv()
 
+
 PG_USER = os.getenv("PG_USER")  # default user in Supabase
 PG_PASS = os.getenv("PG_PASS")
 PG_HOST = os.getenv("PG_HOST")
