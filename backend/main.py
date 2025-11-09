@@ -7,12 +7,6 @@ import dotenv
 dotenv.load_dotenv()
 os.environ["GITHUB_TOKEN"] = os.getenv("GITHUB_TOKEN", "")
 
-try:
-    os.makedirs("/mnt/data/context", exist_ok=True)
-except PermissionError:
-    print("⚠️ Warning: /mnt/data not writable. Check Render disk settings.")
-# Ensure context directory exists
-os.makedirs("/mnt/data/context", exist_ok=True)
 
 from fastapi import FastAPI, BackgroundTasks, Request
 from fastapi.responses import JSONResponse
