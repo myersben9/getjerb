@@ -18,8 +18,6 @@ from backend.lib.run_scrape import run_palantir_scrape
 from backend.lib.start_camoufox import startCamoufox
 
 
-os.environ["CAMOUFOX_PATH"] = "/mnt/data/camoufox"
-
 db = JobDatabase()
 print("Loop policy:", type(asyncio.get_event_loop_policy()).__name__)
 

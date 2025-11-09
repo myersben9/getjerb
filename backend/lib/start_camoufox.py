@@ -17,7 +17,7 @@ def startCamoufox():
         # Don't delete data between runs
         persistent_context=True,
         # Stores user data in local folder
-        user_data_dir='/mnt/data/context',
+        user_data_dir='/context',
         # Randomizes mouse cursor movements
         humanize=True,
         # Opens window for control
