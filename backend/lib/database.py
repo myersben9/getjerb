@@ -33,6 +33,7 @@ class JobDatabase:
     """Encapsulates all job database operations."""
 
     def __init__(self, db_url: str = DATABASE_URL, echo: bool = False):
+        print("DATABASE_URL:", DATABASE_URL)
         self.engine = create_async_engine(db_url, echo=echo)
         self.SessionLocal = async_sessionmaker(
             self.engine, class_=AsyncSession, expire_on_commit=False
