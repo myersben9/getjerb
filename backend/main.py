@@ -7,14 +7,10 @@ import dotenv
 dotenv.load_dotenv()
 os.environ["GITHUB_TOKEN"] = os.getenv("GITHUB_TOKEN", "")
 
-import subprocess
-
-# Ensure /mnt/data is writable by the 'render' user
 try:
-    subprocess.run(["sudo", "chown", "-R", "render:render", "/mnt/data"], check=True)
-except Exception as e:
-    print("Warning: couldn't chown /mnt/data:", e)
-
+    os.makedirs("/mnt/data/context", exist_ok=True)
+except PermissionError:
+    print("⚠️ Warning: /mnt/data not writable. Check Render disk settings.")
 # Ensure context directory exists
 os.makedirs("/mnt/data/context", exist_ok=True)
 
