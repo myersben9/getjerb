@@ -13,11 +13,21 @@ if sys.platform.startswith("win"):
 from camoufox import AsyncCamoufox
 
 def startCamoufox():
+
+    user_data_rel_path = 'context'
+
+    if os.path.exists(user_data_rel_path):
+        try:
+            os.makedirs(user_data_rel_path, exist_ok=True)
+            print(f"Created persistent browser context directory: {user_data_rel_path}")
+        except OSError as e:
+            # Handle potential permission errors during creation
+            print(f"Error creating directory {user_data_rel_path}: {e}", file=sys.stderr)
     return AsyncCamoufox(
         # Don't delete data between runs
         persistent_context=True,
         # Stores user data in local folder
-        user_data_dir='/context',
+        user_data_dir='context',
         # Randomizes mouse cursor movements
         humanize=True,
         # Opens window for control
