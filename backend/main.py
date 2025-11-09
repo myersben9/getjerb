@@ -7,6 +7,17 @@ import dotenv
 dotenv.load_dotenv()
 os.environ["GITHUB_TOKEN"] = os.getenv("GITHUB_TOKEN", "")
 
+import subprocess
+
+# Ensure /mnt/data is writable by the 'render' user
+try:
+    subprocess.run(["sudo", "chown", "-R", "render:render", "/mnt/data"], check=True)
+except Exception as e:
+    print("Warning: couldn't chown /mnt/data:", e)
+
+# Ensure context directory exists
+os.makedirs("/mnt/data/context", exist_ok=True)
+
 from fastapi import FastAPI, BackgroundTasks, Request
 from fastapi.responses import JSONResponse
 from contextlib import asynccontextmanager
